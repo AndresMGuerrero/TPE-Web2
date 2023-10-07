@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-09-2023 a las 23:36:21
+-- Tiempo de generación: 07-10-2023 a las 21:00:50
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,27 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compradores`
+-- Estructura de tabla para la tabla `administradores`
 --
 
-CREATE TABLE `compradores` (
-  `id_comprador` int(11) NOT NULL,
+CREATE TABLE `administradores` (
+  `id_admin` int(11) NOT NULL,
   `nombre_Usuario` varchar(45) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `num_tarjeta` int(11) NOT NULL,
   `contraseña` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fabricas`
+-- Estructura de tabla para la tabla `marcas`
 --
 
-CREATE TABLE `fabricas` (
-  `id_fabrica` int(11) NOT NULL,
-  `nombre_fabrica` varchar(45) NOT NULL,
-  `ubicacion` varchar(45) NOT NULL
+CREATE TABLE `marcas` (
+  `id_marca` varchar(45) NOT NULL,
+  `fecha_creacion` date NOT NULL,
+  `loc_fabrica` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -60,8 +58,7 @@ CREATE TABLE `productos` (
   `talle` int(11) NOT NULL,
   `tipo` varchar(45) NOT NULL,
   `precio` double NOT NULL,
-  `id_comprador` int(11) NOT NULL,
-  `id_fabrica` int(11) NOT NULL
+  `id_marca` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -69,40 +66,33 @@ CREATE TABLE `productos` (
 --
 
 --
--- Indices de la tabla `compradores`
+-- Indices de la tabla `administradores`
 --
-ALTER TABLE `compradores`
-  ADD PRIMARY KEY (`id_comprador`);
+ALTER TABLE `administradores`
+  ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indices de la tabla `fabricas`
+-- Indices de la tabla `marcas`
 --
-ALTER TABLE `fabricas`
-  ADD PRIMARY KEY (`id_fabrica`);
+ALTER TABLE `marcas`
+  ADD PRIMARY KEY (`id_marca`);
 
 --
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_comprador` (`id_comprador`),
-  ADD UNIQUE KEY `id_fabrica` (`id_fabrica`);
+  ADD UNIQUE KEY `id_fabrica` (`id_marca`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `compradores`
+-- AUTO_INCREMENT de la tabla `administradores`
 --
-ALTER TABLE `compradores`
-  MODIFY `id_comprador` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `fabricas`
---
-ALTER TABLE `fabricas`
-  MODIFY `id_fabrica` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `administradores`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -118,8 +108,7 @@ ALTER TABLE `productos`
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_comprador`) REFERENCES `compradores` (`id_comprador`),
-  ADD CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`id_fabrica`) REFERENCES `fabricas` (`id_fabrica`);
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marcas` (`id_marca`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
