@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2023 a las 23:36:08
+-- Tiempo de generación: 08-10-2023 a las 18:29:55
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -53,6 +53,7 @@ CREATE TABLE `marcas` (
 
 CREATE TABLE `productos` (
   `id` int(11) NOT NULL,
+  `nombre_producto` varchar(45) DEFAULT NULL,
   `stock` int(11) NOT NULL,
   `color` varchar(45) NOT NULL,
   `talle` int(11) NOT NULL,
@@ -98,7 +99,7 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
