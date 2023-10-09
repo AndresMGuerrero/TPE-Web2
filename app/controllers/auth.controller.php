@@ -10,8 +10,8 @@ class AuthController{
     private $view;
 
     public function __construct(){
-        $this->model-> new UserModel();
-        $this->view-> new AuthView();
+        $this->model = new UserModel();
+        $this->view = new AuthView();
     }
 
     public function showLogin(){

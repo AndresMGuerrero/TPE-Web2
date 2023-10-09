@@ -1,16 +1,11 @@
-<?php
-
-
-?>
+<?php require './templates/header.phtml';?>
 
 <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+<?php foreach($products as $product): ?>
+    <li>
+        <?= $product->nombre_producto?>;
+    </li>
+<?php endforeach ?>
 </ul>
 
-
-?>
+<?php require './templates/footer.phtml';?>

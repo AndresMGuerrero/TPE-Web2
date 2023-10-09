@@ -1,6 +1,6 @@
 <?php
 
-class ProductView{
+class MarcasView{
 
     public function listMarcas(){
         //Poner en el template
