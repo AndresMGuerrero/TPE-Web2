@@ -8,7 +8,7 @@ class ProductController{
 
     private $model;
     private $view;
-    private $erroView;
+    private $errorView;
 
     public function __construct(){
 
@@ -30,7 +30,7 @@ class ProductController{
 
     public function searchProducts($id_marca){
         $products = $this->model->searchProducts($id_marca);
-        $this->view->listProducts();
+        $this->view->listProducts($products);
     }
 
     public function addProduct(){

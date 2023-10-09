@@ -11,9 +11,9 @@ class MarcasController{
     private $errorView;
 
     public function __construct(){
-        $this->$model = new MarcasModel();
-        $this->$view = new MarcasView();
-        $this->$errorView = new ErrorView();
+        $this->model = new MarcasModel();
+        $this->view = new MarcasView();
+        $this->errorView = new ErrorView();
     }
 
     public function showMarcas(){
@@ -30,7 +30,7 @@ class MarcasController{
         $localizacion = $_POST['localizacion'];
 
         if(empty($nombre)||empty($anio)||empty($localizacion)){
-            $this->view->showError("Complete todos los campos.");
+            $this->errorView->showError("Complete todos los campos.");
             return;
         }
 
@@ -44,7 +44,7 @@ class MarcasController{
 
     }
 
-    public function removeProduct($id){
+    public function removeMarca($id){
         $this->model-> deleteProduct($id);
         header('Location: ' . BASE_URL);
     }
