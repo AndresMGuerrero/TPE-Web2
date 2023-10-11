@@ -16,7 +16,7 @@ class MarcasModel{
         return $marcas;
     }
 
-    public function insertProduct($nombre, $anio, $localizacion){
+    public function insertMarca($nombre, $anio, $localizacion){
         $query = $this->db->prepare('INSERT INTO marcas (id_marca, fecha_creacion, loc_fabrica) VALUES (?,?,?)');
         $query->execute([$nombre, $anio, $localizacion]);
 

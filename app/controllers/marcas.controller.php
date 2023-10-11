@@ -45,7 +45,7 @@ class MarcasController{
     }
 
     public function removeMarca($id){
-        $this->model-> deleteProduct($id);
+        $this->model-> deleteMarca($id);
         header('Location: ' . BASE_URL);
     }
 
