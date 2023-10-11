@@ -1,0 +1,44 @@
+<?php require './templates/header.phtml';?>
+
+<table border=1px>
+    <thead>
+        <tr>   
+            <th>id</th>
+            <th>Nombre del producto</th>
+            <th>Color</th>
+            <th>Talle</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Marca</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    <?php foreach($products as $product){ ?>
+        <tr>
+            <td> <?= $product->id ?> </td>
+            <td> <?= $product->nombre_producto?> </td>
+            <td> <?= $product->color?> </td>
+            <td> <?= $product->talle?> </td>
+            <td> <?= $product->tipo?> </td>
+            <td> <?= $product->precio?> </td>
+            <td> <?= $product->id_marca?> </td>
+            <td><a href="<?=BASE_URL?>showFormModifProd/<?= $product->id ?>" type="button">Modificar</a></td>
+            <td><a href="<?=BASE_URL?>eliminarProd/<?= $product->id ?>" type="button">Borrar</a></td>
+            
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+
+<?php require './templates/formAddProd.phtml';?>
+
+<p><a href="listarMarcas">Listar Marcas</a></p>
+
+
+
+<?php if (session_status() == PHP_SESSION_ACTIVE){
+    echo "sesion activada";
+}?>
+
+<?php require './templates/footer.phtml';?>

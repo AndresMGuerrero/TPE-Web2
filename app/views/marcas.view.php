@@ -2,11 +2,7 @@
 
 class MarcasView{
 
-    public function listMarcas(){
-        //Poner en el template
-        /*<?php foreach($marcas as $marca): ?>*/
-        //El listado
-        /* <?php endforeach ?>*/
+    public function listaMarcas($marcas){
 
         require 'templates/listaMarcas.phtml';
     }

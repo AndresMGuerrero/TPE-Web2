@@ -1,0 +1,11 @@
+<h2>Modificar Producto</h2>
+
+<form action="<?=BASE_URL?>modificarProd/<?= $id ?>" method="POST">
+    <label for="nombre">Nombre del producto: </label><input type="text" name="nombre" value="<?= $product->nombre_producto?>">
+    <label for="color">Color: </label><input type="text" name="color" value="<?= $product->color?>">
+    <label for="tipo">Tipo: </label><input type="text" name="tipo" value="<?= $product->tipo?>">
+    <label for="talle">Talle: </label><input type="text" name="talle" value="<?= $product->talle?>">
+    <label for="precio">Precio: </label><input type="text" name="precio" value="<?= $product->precio?>">
+    <label for="marca">Marca: </label><input type="text" name="marca" value="<?= $product->id_marca?>">
+    <button type="submit">Modificar producto</button>
+</form>

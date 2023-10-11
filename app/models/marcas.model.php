@@ -16,20 +16,30 @@ class MarcasModel{
         return $marcas;
     }
 
-    public function insertProduct($nombre, $anio, $localizacion){
+    public function insertMarca($nombre, $anio, $localizacion){
         $query = $this->db->prepare('INSERT INTO marcas (id_marca, fecha_creacion, loc_fabrica) VALUES (?,?,?)');
         $query->execute([$nombre, $anio, $localizacion]);
 
-        return $this->db->lastInsertId();
+        return $this->db->lastInsertId(); //No funciona si es un string?
     }
 
     public function deleteMarca($id){
-        $query = $this->db->prepare('DELETE FROM marcas WHERE id = ?');
+        $query = $this->db->prepare('DELETE FROM marcas WHERE id_marca = ?');
         $query->execute([$id]);
     }
 
+    public function getMarca($id){
+
+        $query = $this->db->prepare('SELECT * FROM marcas WHERE id_marca = ?');
+        $query->execute([$id]);
+
+        $marca = $query->fetch(PDO::FETCH_OBJ);
+
+        return $marca;
+    }
+
     public function updateMarca($id, $anio, $localizacion){
-        $query = $this->db->prepare('UPDATE marcas SET fecha_creacion = ? , loc_fabrica = ? WHERE id = ?');
+        $query = $this->db->prepare('UPDATE marcas SET fecha_creacion = ? , loc_fabrica = ? WHERE id_marca = ?');
         $query->execute([$anio, $localizacion, $id]);
     }
 }

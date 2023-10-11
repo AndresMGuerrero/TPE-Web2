@@ -15,31 +15,27 @@
     <header>
         <nav >
             <div >
-                <a href="">Ventas de Calsado</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                </button>
-                <div >
+                <h1><a href="">Ventas de Calzado</a></h1>
+                <div>
                     <ul>
+                        
                         <li>
-                            <a class="nav-link" aria-current="page" href="">Tareas</a>
+                            <a href="about">About</a>
                         </li>
-                        <li>
-                            <a class="nav-link" aria-current="page" href="about">About</a>
-                        </li>
-                       //preguntar si va eso 
+
                         <?php if (!isset($_SESSION['USER_ID'])) : ?>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="login">Login</a>
+                        <li>
+                            <a href="login">Login</a>
                         </li>
                         <?php else : ?>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="logout">Logout (<?= $_SESSION['USER_EMAIL'] ?>)</a>
+                        <li>
+                            <a href="logout">Logout (<?= $_SESSION['USER_NAME'] ?>)</a>
                         </li>
                         <?php endif ?>
                     </ul>
                 </div>
             </div>
-            </nav>
+        </nav>
     </header>
 
     <!-- inicio main container -->

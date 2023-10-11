@@ -19,7 +19,7 @@ class ProductModel{
     public function getProduct($id){
 
         $query = $this->db->prepare('SELECT * FROM productos WHERE id = ?');
-        $query->execute($id);
+        $query->execute([$id]);
 
         $product = $query->fetch(PDO::FETCH_OBJ);
 
@@ -51,6 +51,7 @@ class ProductModel{
     public function updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $marca){
         $query = $this->db->prepare('UPDATE productos SET nombre_producto = ? , color = ? , talle = ? , tipo = ? , precio = ? , id_marca = ? WHERE id = ?');
         $query->execute([$nombre, $color, $talle, $tipo, $precio, $marca, $id]);
+        
     }
 
 }

@@ -1,0 +1,21 @@
+<?php require './templates/header.phtml';?>
+<h2>Lista de productos</h2>
+<ul>
+<?php foreach($products as $product): ?>
+    <li>
+        <?= $product->nombre_producto?>
+    </li>
+<?php endforeach ?>
+</ul>
+
+<h2>Lista de marcas</h2>
+
+<ul>
+<?php foreach($marcas as $marca): ?>
+    <li>
+        <a href=""><?= $marca->id_marca?></a>
+    </li>
+<?php endforeach ?>
+</ul>
+
+<?php require './templates/footer.phtml';?>
