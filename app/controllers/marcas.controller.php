@@ -19,7 +19,7 @@ class MarcasController{
     public function showMarcas(){
 
         $marcas = $this->model->getMarcas();
-        $this->view->listMarcas();
+        $this->view->listaMarcas($marcas);
 
     }
 
@@ -35,9 +35,9 @@ class MarcasController{
         }
 
         $id = $this->model->insertMarca($nombre, $anio, $localizacion);//Funciona esto? la tabla marcas tiene id, pero cuenta como id?
-
-        if($id){
-            header('Location: ' . BASE_URL);
+        var_dump($id);
+        if($id==0){
+            header('Location: ' . BASE_URL . 'listarMarcas');
         } else {
             $this->errorView->showError("Error al insertar marca"); //está bien hacer un error.view.php? 
         }        
@@ -46,19 +46,26 @@ class MarcasController{
 
     public function removeMarca($id){
         $this->model-> deleteMarca($id);
-        header('Location: ' . BASE_URL);
+        header('Location: ' . BASE_URL . 'listarMarcas');
     }
 
+    public function showFormUpdateMarca($id){
+        
+        $marca = $this->model->getMarca($id);
+        require_once './templates/formUpdateMarca.phtml';
+        
+    }
+    
     public function updateMarca($id){
         
-        if(!empty($anio)&&!empty($localizacion)){
+        if(!empty($_POST['anio'])&&!empty($_POST['localizacion'])){
 
             $anio = $_POST['anio'];
             $localizacion = $_POST['localizacion'];
             
     
             $this->model->updateMarca($id, $anio, $localizacion);
-            header('Location: ' . BASE_URL);
+            header('Location: ' . BASE_URL . 'listarProdAdmin');
         }            
     }
 }

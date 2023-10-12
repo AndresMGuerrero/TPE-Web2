@@ -12,6 +12,7 @@ class UserModel{
         $query = $this->db->prepare('SELECT * FROM administradores WHERE nombre_Usuario= ?');
         $query->execute([$userName]);
 
-        return $query->fetch(PDO::FETCH_OBJ);
+        $user = $query->fetch(PDO::FETCH_OBJ);
+        return $user;
     }
 }

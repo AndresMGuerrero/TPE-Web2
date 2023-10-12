@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2023 a las 18:33:01
+-- Tiempo de generación: 11-10-2023 a las 22:11:02
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -33,6 +33,13 @@ CREATE TABLE `administradores` (
   `password` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `administradores`
+--
+
+INSERT INTO `administradores` (`id_admin`, `nombre_Usuario`, `password`) VALUES
+(1, 'webadmin', 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -41,9 +48,22 @@ CREATE TABLE `administradores` (
 
 CREATE TABLE `marcas` (
   `id_marca` varchar(45) NOT NULL,
-  `fecha_creacion` date NOT NULL,
+  `fecha_creacion` varchar(45) NOT NULL,
   `loc_fabrica` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `marcas`
+--
+
+INSERT INTO `marcas` (`id_marca`, `fecha_creacion`, `loc_fabrica`) VALUES
+('adidas', '1939-08-18', 'Alemania'),
+('legan', '1970', 'España'),
+('nike', '1964-01-25', 'EEUU'),
+('puma', '1970', 'España'),
+('rabe', '1996-03-24', 'Argentina'),
+('reebok', '1986', 'Alemania'),
+('topper', '1988', 'Argentina');
 
 -- --------------------------------------------------------
 
@@ -60,6 +80,16 @@ CREATE TABLE `productos` (
   `precio` double NOT NULL,
   `id_marca` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre_producto`, `color`, `talle`, `tipo`, `precio`, `id_marca`) VALUES
+(2, 'zapatillas', 'rojo', 36, 'deportivas', 23000, 'nike'),
+(3, 'zapatillas', 'negro', 36, 'deportivas', 23000, 'adidas'),
+(6, 'Botas', 'marrón', 38, 'formal', 43000, 'rabe'),
+(7, 'zapatos', 'azul', 39, 'formal', 43000, 'topper');
 
 --
 -- Índices para tablas volcadas
@@ -92,13 +122,13 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `administradores`
 --
 ALTER TABLE `administradores`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

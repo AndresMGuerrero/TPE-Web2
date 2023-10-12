@@ -3,35 +3,47 @@
 require_once './app/models/product.model.php';
 require_once './app/views/product.view.php';
 require_once './app/views/error.view.php';
+require_once './app/models/marcas.model.php';
 
 class ProductController{
 
-    private $model;
+    private $modelProd;
+    private $modelMarca;
     private $view;
     private $errorView;
 
     public function __construct(){
 
-        $this->model = new ProductModel();
+        $this->modelProd = new ProductModel();
+        $this->modelMarca = new MarcasModel();
         $this->view = new ProductView();
         $this->errorView = new ErrorView();
     }
 
     public function showProducts(){
 
-        $products = $this->model->getProducts();
-        $this->view->listProducts($products);
+        $products = $this->modelProd->getProducts();
+        $marcas = $this->modelMarca->getMarcas();
+        $this->view->listProductsMarcasPublic($products, $marcas);
     }
 
     public function showDetalles($id){
-        $product = $this->model->getProduct($id);
+        $product = $this->modelProd->getProduct($id);
         $this->view->showDetalles($product);
     }
 
     public function searchProducts($id_marca){
-        $products = $this->model->searchProducts($id_marca);
-        $this->view->listProducts($products);
+        $products = $this->modelProd->searchProducts($id_marca);
+        $this->view->listProductsPublic($products);
     }
+
+    public function showProductsAdmin(){
+
+        $products = $this->modelProd->getProducts();
+        $marcas = $this->modelMarca->getMarcas();
+        $this->view->listProductsAdmin($products, $marcas);
+    }
+    
 
     public function addProduct(){
 
@@ -47,10 +59,10 @@ class ProductController{
             return;
         }
 
-        $id = $this->model->insertProduct($nombre, $color, $talle, $tipo, $precio, $marca);
+        $id = $this->modelProd->insertProduct($nombre, $color, $talle, $tipo, $precio, $marca);
 
         if($id){
-            header('Location: ' . BASE_URL);
+            header('Location: ' . BASE_URL . 'listarProdAdmin');
         } else {
             $this->errorView->showError("Error al insertar producto");
         }        
@@ -58,13 +70,20 @@ class ProductController{
     }
 
     public function removeProduct($id){
-        $this->model-> deleteProduct($id);
-        header('Location: ' . BASE_URL);
+        $this->modelProd-> deleteProduct($id);
+        header('Location: ' . BASE_URL . 'listarProdAdmin');
     }
 
+    public function showFormUpdateProduct($id){
+        
+        $product = $this->modelProd->getProduct($id);
+        require_once './templates/formUpdateProd.phtml';
+        
+    }
+    
     public function updateProduct($id){
         
-        if(!empty($nombre)&&!empty($color)&&!empty($talle)&&!empty($tipo)&&!empty($precio)&&!empty($marca)){
+        if(!empty($_POST['nombre'])&&!empty($_POST['color'])&&!empty($_POST['talle'])&&!empty($_POST['tipo'])&&!empty($_POST['precio'])&&!empty($_POST['marca'])){
 
             $nombre = $_POST['nombre'];
             $color = $_POST['color'];
@@ -74,8 +93,8 @@ class ProductController{
             $marca = $_POST['marca'];
             
     
-            $this->model->updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $marca);
-            header('Location: ' . BASE_URL);
+            $this->modelProd->updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $marca);
+            header('Location: ' . BASE_URL . 'listarProdAdmin');
         }            
     }
 }

@@ -1,0 +1,26 @@
+<?php require './templates/header.phtml';?>
+<table border=1px>
+    <thead>
+        <tr>   
+            <th>id_marca</th>
+            <th>Año de creación</th>
+            <th>Localización de fábrica</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    <?php foreach($marcas as $marca): ?>
+        <tr>
+            <td> <?= $marca->id_marca ?> </td>
+            <td> <?= $marca->fecha_creacion?> </td>
+            <td> <?= $marca->loc_fabrica?> </td>
+            <td><a href="<?=BASE_URL?>showFormModifMarca/<?= $marca->id_marca ?>" type="button">Modificar</a></td>
+            <td><a href="<?=BASE_URL?>eliminarMarca/<?= $marca->id_marca ?>" type="button">Borrar</a></td>
+            
+        </tr>
+    <?php endforeach ?>
+    </tbody>
+</table>
+
+<?php require './templates/formAddMarca.phtml';?>
+<?php require './templates/footer.phtml';?>
