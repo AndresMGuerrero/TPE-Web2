@@ -1,9 +1,11 @@
 <?php require './templates/header.phtml';?>
+
 <h2>Lista de productos</h2>
 <ul>
 <?php foreach($products as $product): ?>
-    <li>
+    <li> 
         <?= $product->nombre_producto?>
+        <a href="">Ver detalles</a>
     </li>
 <?php endforeach ?>
 </ul>
@@ -13,9 +15,10 @@
 <ul>
 <?php foreach($marcas as $marca): ?>
     <li>
-        <a href=""><?= $marca->id_marca?></a>
+        <a href="busquedaPorMarca/<?= $marca->id_marcas ?>"><?= $marca->nombre_marca?></a>
     </li>
 <?php endforeach ?>
 </ul>
 
 <?php require './templates/footer.phtml';?>
+

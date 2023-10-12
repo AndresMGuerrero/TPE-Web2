@@ -6,4 +6,8 @@ class MarcasView{
 
         require 'templates/listaMarcas.phtml';
     }
+    
+    public function showFormAddMarca(){
+        require 'templates/formAddMarca.phtml';
+    }
 }

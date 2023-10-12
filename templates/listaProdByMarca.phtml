@@ -1,0 +1,13 @@
+
+<?php require './templates/header.phtml';?>
+
+<h2>Lista de productos: <?= $products[0]->nombre_marca?></h2>
+<ul>
+<?php foreach($products as $product): ?>
+    <li>
+        <?= $product->nombre_producto?>
+    </li>
+<?php endforeach ?>
+</ul>
+
+<?php require './templates/footer.phtml';?>

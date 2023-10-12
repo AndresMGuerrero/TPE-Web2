@@ -6,6 +6,6 @@
     <label for="tipo">Tipo: </label><input type="text" name="tipo">
     <label for="talle">Talle: </label><input type="text" name="talle">
     <label for="precio">Precio: </label><input type="text" name="precio">
-    <label for="marca">Marca: </label><select name="marca" id=""><?php foreach($marcas as $marca):?> <option value="<?=$marca->id_marca?>"><?=$marca->id_marca?></option><?php endforeach ?></select>
+    <label for="marca">Marca: </label><select name="marca" id="marca"><?php foreach($marcas as $marca):?> <option value="<?=$marca->id_marcas?>"><?=$marca->nombre_marca?></option><?php endforeach ?></select>
     <button type="submit">Agregar producto</button>
 </form>

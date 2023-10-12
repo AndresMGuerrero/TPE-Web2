@@ -1,5 +1,7 @@
 <?php require './templates/header.phtml';?>
 
+<h2>Tabla de productos</h2>
+
 <table border=1px>
     <thead>
         <tr>   
@@ -9,7 +11,7 @@
             <th>Talle</th>
             <th>Tipo</th>
             <th>Precio</th>
-            <th>Marca</th>
+            <th>ID_Marca</th>
         </tr>
     </thead>
 
@@ -22,7 +24,7 @@
             <td> <?= $product->talle?> </td>
             <td> <?= $product->tipo?> </td>
             <td> <?= $product->precio?> </td>
-            <td> <?= $product->id_marca?> </td>
+            <td> <?= $product->id_marca_fk?> </td>
             <td><a href="<?=BASE_URL?>showFormModifProd/<?= $product->id ?>" type="button">Modificar</a></td>
             <td><a href="<?=BASE_URL?>eliminarProd/<?= $product->id ?>" type="button">Borrar</a></td>
             
@@ -33,12 +35,6 @@
 
 <?php require './templates/formAddProd.phtml';?>
 
-<p><a href="listarMarcas">Listar Marcas</a></p>
-
-
-
-<?php if (session_status() == PHP_SESSION_ACTIVE){
-    echo "sesion activada";
-}?>
+<button type="submit"><a href="listarMarcas">Listar Marcas</a></button>
 
 <?php require './templates/footer.phtml';?>

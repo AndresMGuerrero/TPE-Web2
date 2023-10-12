@@ -15,7 +15,7 @@
     <header>
         <nav >
             <div >
-                <h1><a href="">Ventas de Calzado</a></h1>
+                <h1><a href="<?=BASE_URL?>listarProd">Ventas de Calzado</a></h1>
                 <div>
                     <ul>
                         
@@ -29,7 +29,10 @@
                         </li>
                         <?php else : ?>
                         <li>
-                            <a href="logout">Logout (<?= $_SESSION['USER_NAME'] ?>)</a>
+                            <a href="<?=BASE_URL?>logout">Logout (<?= $_SESSION['USER_NAME'] ?>)</a>
+                        </li>
+                        <li>
+                            <a href="<?=BASE_URL?>listarProdAdmin">Edición de lista de productos</a>
                         </li>
                         <?php endif ?>
                     </ul>
