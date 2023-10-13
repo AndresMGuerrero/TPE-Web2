@@ -1,8 +1,10 @@
 <?php require './templates/header.phtml';?>
-<table border=1px>
+
+<table class="table table-bordered">
     <thead>
         <tr>   
             <th>id_marca</th>
+            <th>nombre_marca</th>
             <th>Año de creación</th>
             <th>Localización de fábrica</th>
         </tr>
@@ -11,11 +13,12 @@
     <tbody>
     <?php foreach($marcas as $marca): ?>
         <tr>
-            <td> <?= $marca->id_marca ?> </td>
+            <td> <?= $marca->id_marcas ?> </td>    
+            <td> <?= $marca->nombre_marca ?> </td>
             <td> <?= $marca->fecha_creacion?> </td>
             <td> <?= $marca->loc_fabrica?> </td>
-            <td><a href="<?=BASE_URL?>showFormModifMarca/<?= $marca->id_marca ?>" type="button">Modificar</a></td>
-            <td><a href="<?=BASE_URL?>eliminarMarca/<?= $marca->id_marca ?>" type="button">Borrar</a></td>
+            <td><a href="<?=BASE_URL?>showFormModifMarca/<?= $marca->id_marcas ?>" type="button">Modificar</a></td>
+            <td><a href="<?=BASE_URL?>eliminarMarca/<?= $marca->id_marcas ?>" type="button">Borrar</a></td>
             
         </tr>
     <?php endforeach ?>
@@ -23,4 +26,7 @@
 </table>
 
 <?php require './templates/formAddMarca.phtml';?>
+
+<button type="submit"><a class="btn btn-primary" href="listarProdAdmin">Finalizar cambios</a></button>
+
 <?php require './templates/footer.phtml';?>

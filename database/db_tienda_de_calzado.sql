@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2023 a las 22:11:02
+-- Tiempo de generación: 12-10-2023 a las 18:12:51
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `administradores` (
   `id_admin` int(11) NOT NULL,
   `nombre_Usuario` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL
+  `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `administradores` (
 --
 
 INSERT INTO `administradores` (`id_admin`, `nombre_Usuario`, `password`) VALUES
-(1, 'webadmin', 'admin');
+(1, 'webadmin', '$2y$10$CfqL3wkMaGivOE1Fiy7lEuo.AZZ/NxVygLz30kN2ht7XmMtYCJKgu');
 
 -- --------------------------------------------------------
 
@@ -47,23 +47,23 @@ INSERT INTO `administradores` (`id_admin`, `nombre_Usuario`, `password`) VALUES
 --
 
 CREATE TABLE `marcas` (
-  `id_marca` varchar(45) NOT NULL,
-  `fecha_creacion` varchar(45) NOT NULL,
-  `loc_fabrica` varchar(45) NOT NULL
+  `id_marcas` int(11) NOT NULL,
+  `nombre_marca` varchar(45) NOT NULL,
+  `fecha_creacion` varchar(45) DEFAULT NULL,
+  `loc_fabrica` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `marcas`
 --
 
-INSERT INTO `marcas` (`id_marca`, `fecha_creacion`, `loc_fabrica`) VALUES
-('adidas', '1939-08-18', 'Alemania'),
-('legan', '1970', 'España'),
-('nike', '1964-01-25', 'EEUU'),
-('puma', '1970', 'España'),
-('rabe', '1996-03-24', 'Argentina'),
-('reebok', '1986', 'Alemania'),
-('topper', '1988', 'Argentina');
+INSERT INTO `marcas` (`id_marcas`, `nombre_marca`, `fecha_creacion`, `loc_fabrica`) VALUES
+(13, 'topper', '1989', 'Argentina'),
+(15, 'nike', '1986', 'Argentina'),
+(16, 'puma', '1970', 'Argentina'),
+(17, 'vans', '1990', 'Alemania'),
+(18, 'reebok', '1997', 'Alemania'),
+(19, 'adidas', '1987', 'España');
 
 -- --------------------------------------------------------
 
@@ -78,18 +78,18 @@ CREATE TABLE `productos` (
   `talle` int(11) NOT NULL,
   `tipo` varchar(45) NOT NULL,
   `precio` double NOT NULL,
-  `id_marca` varchar(45) NOT NULL
+  `id_marca_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre_producto`, `color`, `talle`, `tipo`, `precio`, `id_marca`) VALUES
-(2, 'zapatillas', 'rojo', 36, 'deportivas', 23000, 'nike'),
-(3, 'zapatillas', 'negro', 36, 'deportivas', 23000, 'adidas'),
-(6, 'Botas', 'marrón', 38, 'formal', 43000, 'rabe'),
-(7, 'zapatos', 'azul', 39, 'formal', 43000, 'topper');
+INSERT INTO `productos` (`id`, `nombre_producto`, `color`, `talle`, `tipo`, `precio`, `id_marca_fk`) VALUES
+(15, 'zapatos', 'negro', 45, 'formal', 43000, 17),
+(17, 'zapatillas', 'rojo', 39, 'deportivas', 25000, 18),
+(19, 'zapatillas', 'marrón', 45, 'deportivas', 34000, 15),
+(20, 'zapatillas', 'rosa', 38, 'deportivas', 32000, 19);
 
 --
 -- Índices para tablas volcadas
@@ -105,14 +105,14 @@ ALTER TABLE `administradores`
 -- Indices de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  ADD PRIMARY KEY (`id_marca`);
+  ADD KEY `id_marcas` (`id_marcas`) USING BTREE;
 
 --
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_marca` (`id_marca`) USING BTREE;
+  ADD KEY `id_marca_fk` (`id_marca_fk`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -125,10 +125,16 @@ ALTER TABLE `administradores`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `marcas`
+--
+ALTER TABLE `marcas`
+  MODIFY `id_marcas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas
@@ -138,7 +144,7 @@ ALTER TABLE `productos`
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marcas` (`id_marca`);
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_marca_fk`) REFERENCES `marcas` (`id_marcas`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

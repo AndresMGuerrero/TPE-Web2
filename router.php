@@ -45,6 +45,10 @@ switch ($params[0]) {
         $controller = new MarcasController();
         $controller->showMarcas();
         break;
+    case 'busquedaPorMarca':
+        $controller = new ProductController();
+        $controller->searchProducts($params[1]);
+        break;
     case 'listarProdAdmin':
         $controller = new ProductController();
         $controller->showProductsAdmin();

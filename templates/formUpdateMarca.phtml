@@ -1,9 +1,13 @@
+<?php require './templates/header.phtml';?>
+
 <h2>Modificar Marca</h2>
 
 <form action="<?=BASE_URL?>modificarMarca/<?= $id ?>" method="POST">
-    <label for="nombre">Nombre de la marca: </label><input type="text" name="nombre" value="<?= $marca->id_marca?>">
+    <label for="nombre">Nombre de la marca: </label><input type="text" name="nombre" value="<?= $marca->nombre_marca?>">
     <label for="anio">Año de creación: </label><input type="text" name="anio" value="<?= $marca->fecha_creacion?>">
-    <label for="localizacion">Tipo: </label><input type="text" name="localizacion" value="<?= $marca->loc_fabrica?>">
+    <label for="localizacion">Localización: </label><input type="text" name="localizacion" value="<?= $marca->loc_fabrica?>">
     
     <button type="submit">Modificar Marca</button>
 </form>
+
+<?php require './templates/footer.phtml';?>

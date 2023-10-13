@@ -4,44 +4,48 @@ require_once './app/models/product.model.php';
 require_once './app/views/product.view.php';
 require_once './app/views/error.view.php';
 require_once './app/models/marcas.model.php';
+require_once './app/helpers/auth.helper.php';
+
 
 class ProductController{
 
     private $modelProd;
     private $modelMarca;
-    private $view;
+    private $viewProd;
     private $errorView;
+    private $authHelper;
 
     public function __construct(){
-
+        $this->authHelper= new AuthHelper();
         $this->modelProd = new ProductModel();
         $this->modelMarca = new MarcasModel();
-        $this->view = new ProductView();
+        $this->viewProd = new ProductView();
         $this->errorView = new ErrorView();
+       
     }
 
     public function showProducts(){
-
+        AuthHelper::init();       
         $products = $this->modelProd->getProducts();
         $marcas = $this->modelMarca->getMarcas();
-        $this->view->listProductsMarcasPublic($products, $marcas);
+        $this->viewProd->listProductsMarcasPublic($products, $marcas);
     }
 
     public function showDetalles($id){
         $product = $this->modelProd->getProduct($id);
-        $this->view->showDetalles($product);
+        $this->viewProd->showDetalles($product);
     }
 
     public function searchProducts($id_marca){
         $products = $this->modelProd->searchProducts($id_marca);
-        $this->view->listProductsPublic($products);
+        $this->viewProd->listProductsByMarca($products);
     }
 
     public function showProductsAdmin(){
-
+        AuthHelper::init();
         $products = $this->modelProd->getProducts();
         $marcas = $this->modelMarca->getMarcas();
-        $this->view->listProductsAdmin($products, $marcas);
+        $this->viewProd->listProductsAdmin($products, $marcas);
     }
     
 
@@ -74,9 +78,10 @@ class ProductController{
         header('Location: ' . BASE_URL . 'listarProdAdmin');
     }
 
-    public function showFormUpdateProduct($id){
-        
-        $product = $this->modelProd->getProduct($id);
+    public function showFormUpdateProduct($id){  
+        AuthHelper::init();      
+        $product = $this->modelProd->getProductsandMarcas($id);        
+        $this->viewProd->showProductsandMarcas($product);
         require_once './templates/formUpdateProd.phtml';
         
     }
@@ -92,7 +97,16 @@ class ProductController{
             $precio = $_POST['precio'];
             $marca = $_POST['marca'];
             
-    
+            $marcas = $this->modelMarca->getMarcas();
+            $indicador = 0;
+            foreach($marcas as $marcaExistente){
+                if($marcaExistente->nombre_marca == $marca){
+                    $indicador = 1;
+                }
+            }
+            if($indicador==0){
+                $this->modelMarca->insertMarca($marca, "null", "null");
+            }
             $this->modelProd->updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $marca);
             header('Location: ' . BASE_URL . 'listarProdAdmin');
         }            
