@@ -6,7 +6,7 @@ class ProductView{
         require './templates/listaProductosMarcasPublico.phtml';
     }
 
-    public function listProductsByMarca($products){        
+    public function listProductsByMarca($products, $marca){        
         require './templates/listaProdByMarca.phtml';
     }
 

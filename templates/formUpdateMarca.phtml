@@ -3,11 +3,23 @@
 <h2>Modificar Marca</h2>
 
 <form action="<?=BASE_URL?>modificarMarca/<?= $id ?>" method="POST">
-    <label for="nombre">Nombre de la marca: </label><input type="text" name="nombre" value="<?= $marca->nombre_marca?>">
-    <label for="anio">Año de creación: </label><input type="text" name="anio" value="<?= $marca->fecha_creacion?>">
-    <label for="localizacion">Localización: </label><input type="text" name="localizacion" value="<?= $marca->loc_fabrica?>">
+    <div class="mb-3">  
+        <label for="nombre" class="form-label">Nombre de la marca: </label><input type="text" name="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $marca->nombre_marca?>">
+    </div>
+    <div class="mb-3">
+        <label for="anio" class="form-label">Año de creación: </label><input type="text" name="anio" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $marca->fecha_creacion?>">
+    </div>
+    <div class="mb-3">
+        <label for="localizacion" class="form-label">Localización: </label><input type="text" name="localizacion" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $marca->loc_fabrica?>">
+    </div>
+    <div class="mb-3">
+        <label for="imagen" class="form-label">URL Imagen: </label><input type="text" name="imagen" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $marca->url_imagen?>" maxlength="300">
+    </div>
     
-    <button type="submit">Modificar Marca</button>
+
+    <button type="submit" class="btn btn-primary">Modificar Marca</button>
+
 </form>
 
 <?php require './templates/footer.phtml';?>
+

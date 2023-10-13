@@ -7,6 +7,7 @@
             <th>nombre_marca</th>
             <th>Año de creación</th>
             <th>Localización de fábrica</th>
+            <th>URL Imagen</th>
         </tr>
     </thead>
 
@@ -17,6 +18,7 @@
             <td> <?= $marca->nombre_marca ?> </td>
             <td> <?= $marca->fecha_creacion?> </td>
             <td> <?= $marca->loc_fabrica?> </td>
+            <td> <?= $marca->url_imagen?> </td>
             <td><a href="<?=BASE_URL?>showFormModifMarca/<?= $marca->id_marcas ?>" type="button">Modificar</a></td>
             <td><a href="<?=BASE_URL?>eliminarMarca/<?= $marca->id_marcas ?>" type="button">Borrar</a></td>
             
@@ -27,6 +29,6 @@
 
 <?php require './templates/formAddMarca.phtml';?>
 
-<button type="submit"><a class="btn btn-primary" href="listarProdAdmin">Finalizar cambios</a></button>
+<button type="submit" class="btn btn-primary btn-lg"><a class="btn btn-primary btn-lg" href="listarProdAdmin">Finalizar cambios</a></button>
 
 <?php require './templates/footer.phtml';?>

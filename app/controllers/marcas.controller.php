@@ -31,13 +31,14 @@ class MarcasController{
         $nombre = $_POST['nombre'];
         $anio = $_POST['anio'];
         $localizacion = $_POST['localizacion'];
+        $urlImg = $_POST['imagen'];
 
-        if(empty($nombre)||empty($anio)||empty($localizacion)){
+        if(empty($nombre)||empty($anio)||empty($localizacion)||empty($urlImg)){
             $this->errorView->showError("Complete todos los campos.");
             return;
         }
 
-        $id = $this->modelMarca->insertMarca($nombre, $anio, $localizacion);//Funciona esto? la tabla marcas tiene id, pero cuenta como id?
+        $id = $this->modelMarca->insertMarca($nombre, $anio, $localizacion, $urlImg);
 
         if($id){
             header('Location: ' . BASE_URL . 'listarMarcas');
@@ -79,13 +80,14 @@ class MarcasController{
     public function updateMarca($id){
 
         
-        if(!empty($_POST['anio'])&&!empty($_POST['localizacion'])){
+        if(!empty($_POST['anio'])&&!empty($_POST['localizacion'])&&!empty($_POST['imagen'])){
 
             $anio = $_POST['anio'];
             $localizacion = $_POST['localizacion'];
+            $urlImg = $_POST['imagen'];
             
     
-            $this->modelMarca->updateMarca($id, $anio, $localizacion);
+            $this->modelMarca->updateMarca($id, $anio, $localizacion, $urlImg);
             header('Location: ' . BASE_URL . 'listarMarcas');
         }            
     }

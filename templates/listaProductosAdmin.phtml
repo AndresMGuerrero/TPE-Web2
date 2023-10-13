@@ -4,13 +4,14 @@
 
 <table class="table table-bordered">
     <thead>
-        <tr>   
+        <tr class="table-info">   
             <th>id</th>
             <th>Nombre del producto</th>
             <th>Color</th>
             <th>Talle</th>
             <th>Tipo</th>
             <th>Precio</th>
+            <th>Url Imagen</th>
             <th>ID_Marca</th>
         </tr>
     </thead>
@@ -24,6 +25,7 @@
             <td> <?= $product->talle?> </td>
             <td> <?= $product->tipo?> </td>
             <td> <?= $product->precio?> </td>
+            <td> <?= $product->url_imagenP?> </td>
             <td> <?= $product->id_marca_fk?> </td>
             <td><a href="<?=BASE_URL?>showFormModifProd/<?= $product->id ?>" type="button">Modificar</a></td>
             <td><a href="<?=BASE_URL?>eliminarProd/<?= $product->id ?>" type="button">Borrar</a></td>
@@ -33,8 +35,10 @@
     </tbody>
 </table>
 
+<button type="submit" class="btn btn-primary btn-lg"><a href="listarMarcas" class="btn btn-primary btn-lg">Listar Marcas</a></button>
+
 <?php require './templates/formAddProd.phtml';?>
 
-<button type="submit"><a class="btn btn-primary" href="listarMarcas">Listar Marcas</a></button>
+
 
 <?php require './templates/footer.phtml';?>

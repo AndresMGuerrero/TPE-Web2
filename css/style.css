@@ -1,0 +1,28 @@
+li{
+    list-style: none;
+    margin: 10px;
+}
+
+div>ul.tarjetasProdMarca{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+}
+
+h1 a{
+    text-decoration: none;
+}
+
+td a{
+    text-decoration: none;
+}
+
+button{
+    margin-top: 10px;
+}
+
+form{
+    width: 400px;
+    border: 1px solid grey;
+    padding: 20px;
+}

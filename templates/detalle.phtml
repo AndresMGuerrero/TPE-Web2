@@ -1,11 +1,32 @@
+<?php require './templates/header.phtml';?>
+
 <h2>Detalle del producto:</h2>
-<p>
-    <ul>
-        <li>Stock: <?= $product->stock?></li>
-        <li>Color: <?= $product->color?></li>
-        <li>Talle: <?= $product->talle?></li>
-        <li>Tipo: <?= $product->tipo?></li>
-        <li>Precio: <?= $product->precio?></li>
-        <li>Marca: <?= $product->id_marca?></li>
-    </ul>
-</p>
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="<?=$product->url_imagenP?>" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"><?=$product->nombre_producto?></h5>
+                <p class="card-text">Color: <small class="text-body-secondary"><?=$product->color?></small></p>
+
+                <p class="card-text">Talle: <small class="text-body-secondary"><?=$product->talle?></small></p>
+
+                <p class="card-text">Tipo: <small class="text-body-secondary"><?=$product->tipo?></small></p>
+
+                <p class="card-text">Precio: $<small class="text-body-secondary"><?=$product->precio?></small></p>
+
+                <p class="card-text">Marca: <small class="text-body-secondary"><?=$product->nombre_marca?></small></p>
+
+                <p class="card-text">Origen: <small class="text-body-secondary"><?=$product->loc_fabrica?></small></p>
+            </div>
+        </div>
+        
+    </div>
+    <button type="button" class="btn btn-info"><a href="<?=BASE_URL?>listarProd">Volver a la lista</a></button>
+</div>
+
+<?php require './templates/footer.phtml';?>
+

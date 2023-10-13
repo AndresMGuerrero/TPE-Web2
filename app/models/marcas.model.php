@@ -1,9 +1,13 @@
 <?php
 
+require_once 'config.php'; 
+
 class MarcasModel{
 
+    protected $db;
+
     function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=db_tienda_de_calzado;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host='.MYSQL_HOST.';dbname='. MYSQL_DB .';charset=utf8', MYSQL_USER, MYSQL_PASS);
     }
 
     public function getMarcas(){
@@ -16,11 +20,11 @@ class MarcasModel{
         return $marcas;
     }
 
-    public function insertMarca($nombre, $anio, $localizacion){
-        $query = $this->db->prepare('INSERT INTO marcas (nombre_marca, fecha_creacion, loc_fabrica) VALUES (?,?,?)');
-        $query->execute([$nombre, $anio, $localizacion]);
+    public function insertMarca($nombre, $anio, $localizacion, $urlImg){
+        $query = $this->db->prepare('INSERT INTO marcas (nombre_marca, fecha_creacion, loc_fabrica, url_imagen) VALUES (?,?,?,?)');
+        $query->execute([$nombre, $anio, $localizacion, $urlImg]);
 
-        return $this->db->lastInsertId(); //No funciona si es un string?
+        return $this->db->lastInsertId();
     }
 
     public function deleteMarca($id){
@@ -38,8 +42,8 @@ class MarcasModel{
         return $marca;
     }
 
-    public function updateMarca($id, $anio, $localizacion){
-        $query = $this->db->prepare('UPDATE marcas SET fecha_creacion = ? , loc_fabrica = ? WHERE id_marcas = ?');
-        $query->execute([$anio, $localizacion, $id]);
+    public function updateMarca($id, $anio, $localizacion, $urlImg){
+        $query = $this->db->prepare('UPDATE marcas SET fecha_creacion = ? , loc_fabrica = ?, url_imagen = ? WHERE id_marcas = ?');
+        $query->execute([$anio, $localizacion, $urlImg, $id]);
     }
 }

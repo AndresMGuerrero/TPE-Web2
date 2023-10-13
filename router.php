@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+
 require_once './app/controllers/product.controller.php';
 require_once './app/controllers/auth.controller.php';
 require_once './app/controllers/marcas.controller.php';
@@ -39,7 +39,7 @@ switch ($params[0]) {
         break;
     case 'detalles':
         $controller = new ProductController();
-        $controller->showDetalles();
+        $controller->showDetalles($params[1]);
         break;
     case 'listarMarcas':
         $controller = new MarcasController();

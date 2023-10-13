@@ -26,7 +26,7 @@ class ProductController{
 
     public function showProducts(){
         AuthHelper::init();       
-        $products = $this->modelProd->getProducts();
+        $products = $this->modelProd->getProductsCompleto(); //porque necesitamos la marca de cada productos para mostrarlo en las tarjetas
         $marcas = $this->modelMarca->getMarcas();
         $this->viewProd->listProductsMarcasPublic($products, $marcas);
     }
@@ -38,7 +38,12 @@ class ProductController{
 
     public function searchProducts($id_marca){
         $products = $this->modelProd->searchProducts($id_marca);
-        $this->viewProd->listProductsByMarca($products);
+        $marca = $this->modelMarca->getMarca($id_marca);
+        if($products != null){
+            $this->viewProd->listProductsByMarca($products, $marca);
+        } else {
+            $this->errorView->showError("No poseemos productos de esta marca.");
+        }        
     }
 
     public function showProductsAdmin(){
@@ -56,14 +61,15 @@ class ProductController{
         $talle = $_POST['talle'];
         $tipo = $_POST['tipo'];
         $precio = $_POST['precio'];
+        $urlImgProd = $_POST['imagen'];
         $marca = $_POST['marca'];
 
-        if(empty($nombre)||empty($color)||empty($talle)||empty($tipo)||empty($precio)||empty($marca)){
+        if(empty($nombre)||empty($color)||empty($talle)||empty($tipo)||empty($precio)||empty($marca)||empty($urlImgProd)){
             $this->errorView->showError("Complete todos los campos.");
             return;
         }
 
-        $id = $this->modelProd->insertProduct($nombre, $color, $talle, $tipo, $precio, $marca);
+        $id = $this->modelProd->insertProduct($nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca);
 
         if($id){
             header('Location: ' . BASE_URL . 'listarProdAdmin');
@@ -88,13 +94,14 @@ class ProductController{
     
     public function updateProduct($id){
         
-        if(!empty($_POST['nombre'])&&!empty($_POST['color'])&&!empty($_POST['talle'])&&!empty($_POST['tipo'])&&!empty($_POST['precio'])&&!empty($_POST['marca'])){
+        if(!empty($_POST['nombre'])&&!empty($_POST['color'])&&!empty($_POST['talle'])&&!empty($_POST['tipo'])&&!empty($_POST['precio'])&&!empty($_POST['imagen'])&&!empty($_POST['marca'])){
 
             $nombre = $_POST['nombre'];
             $color = $_POST['color'];
             $talle = $_POST['talle'];
             $tipo = $_POST['tipo'];
             $precio = $_POST['precio'];
+            $urlImgProd = $_POST['imagen'];
             $marca = $_POST['marca'];
             
             $marcas = $this->modelMarca->getMarcas();
@@ -105,10 +112,15 @@ class ProductController{
                 }
             }
             if($indicador==0){
-                $this->modelMarca->insertMarca($marca, "null", "null");
+                $this->modelMarca->insertMarca($marca, "null", "null", "null");
             }
-            $this->modelProd->updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $marca);
-            header('Location: ' . BASE_URL . 'listarProdAdmin');
+            $this->modelProd->updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca);
+            if($indicador==0){
+                $this->errorView->showError("Dirigirse a el listado de marcas y completar los datos de la nueva marca incluida.");
+            } else{
+                header('Location: ' . BASE_URL . 'listarProdAdmin');
+            }
+            
         }            
     }
 }

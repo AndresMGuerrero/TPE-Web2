@@ -1,11 +1,33 @@
 <h2>Agregar producto</h2>
 
 <form action="agregarProd" method="POST">
-    <label for="nombre">Nombre del producto: </label><input type="text" name="nombre">
-    <label for="color">Color: </label><input type="text" name="color">
-    <label for="tipo">Tipo: </label><input type="text" name="tipo">
-    <label for="talle">Talle: </label><input type="text" name="talle">
-    <label for="precio">Precio: </label><input type="text" name="precio">
-    <label for="marca">Marca: </label><select name="marca" id="marca"><?php foreach($marcas as $marca):?> <option value="<?=$marca->id_marcas?>"><?=$marca->nombre_marca?></option><?php endforeach ?></select>
+    <div class="mb-3">  
+        <label for="nombre" class="form-label">Nombre del producto: </label><input type="text" name="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="color" class="form-label">Color: </label><input type="text" name="color" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo: </label><input type="text" name="tipo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="talle" class="form-label">Talle: </label><input type="text" name="talle" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="precio" class="form-label">Precio: </label><input type="text" name="precio" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="imagen" class="form-label">Url de la imagen: </label><input type="text" name="imagen" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" maxlength="300">
+    </div>
+    
+    <label for="marca" class="form-label">Marca: </label>
+    <select name="marca" id="marca" class="form-select" aria-label="Default select example">
+        <option value="">Selecciona la marca...</option>
+        <?php foreach($marcas as $marca):?>
+            <option value="<?=$marca->id_marcas?>"><?=$marca->nombre_marca?></option>
+        <?php endforeach ?>
+    </select>
+
     <button type="submit" class="btn btn-primary">Agregar producto</button>
+
 </form>

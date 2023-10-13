@@ -1,10 +1,22 @@
 
 <h2>Agregar Marca</h2>
 
+
 <form action="agregarMarca" method="POST">
-    <label for="nombre">Nombre de la marca: </label><input type="text" name="nombre">
-    <label for="anio">Año de creación: </label><input type="text" name="anio">
-    <label for="localizacion">Localización: </label><input type="text" name="localizacion">
+    <div class="mb-3">  
+        <label for="nombre" class="form-label">Nombre de la marca: </label><input type="text" name="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="anio" class="form-label">Año de creación: </label><input type="text" name="anio" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="localizacion" class="form-label">Localización: </label><input type="text" name="localizacion" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="imagen" class="form-label">Url de la imagen: </label><input type="text" name="imagen" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" maxlength="300">
+    </div>
     
+
     <button type="submit" class="btn btn-primary">Agregar marca</button>
+
 </form>

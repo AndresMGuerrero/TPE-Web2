@@ -3,15 +3,32 @@
 <h2>Modificar Producto</h2>
 
 <form action="<?=BASE_URL?>modificarProd/<?= $product->id ?>" method="POST">
-    <label for="nombre">Nombre del producto: </label><input type="text" name="nombre" value="<?= $product->nombre_producto?>">
-    <label for="color">Color: </label><input type="text" name="color" value="<?= $product->color?>">
-    <label for="tipo">Tipo: </label><input type="text" name="tipo" value="<?= $product->tipo?>">
-    <label for="talle">Talle: </label><input type="text" name="talle" value="<?= $product->talle?>">
-    <label for="precio">Precio: </label><input type="text" name="precio" value="<?= $product->precio?>">
+    <div class="mb-3">  
+        <label for="nombre" class="form-label">Nombre del producto: </label><input type="text" name="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->nombre_producto?>">
+    </div>
+    <div class="mb-3">
+        <label for="color" class="form-label">Color: </label><input type="text" name="color" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->color?>">
+    </div>
+    <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo: </label><input type="text" name="tipo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->tipo?>">
+    </div>
+    <div class="mb-3">
+        <label for="talle" class="form-label">Talle: </label><input type="text" name="talle" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->talle?>">
+    </div>
+    <div class="mb-3">
+        <label for="precio" class="form-label">Precio: </label><input type="text" name="precio" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->precio?>">
+    </div>
+    <div class="mb-3">
+        <label for="imagen" class="form-label">URL Imagen: </label><input type="text" name="imagen" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->url_imagenP?>" maxlength="300">
+    </div>
+    <div class="mb-3">
+        <label for="marca">Marca: </label><input type="text" name="marca" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->nombre_marca?>">
+    </div>
     
-    <label for="marca">Marca: </label><input type="text" name="marca" value="<?= $product->nombre_marca?>">
-    
-    <button type="submit">Modificar producto</button>
+
+    <button type="submit" class="btn btn-primary" >Modificar producto</button>
+
 </form>
 
 <?php require './templates/footer.phtml';?>
+

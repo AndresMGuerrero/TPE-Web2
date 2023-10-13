@@ -1,24 +1,46 @@
 <?php require './templates/header.phtml';?>
 
 <h2>Lista de productos</h2>
-<ul>
-<?php foreach($products as $product): ?>
-    <li> 
-        <?= $product->nombre_producto?>
-        <a href="">Ver detalles</a>
-    </li>
-<?php endforeach ?>
-</ul>
+<div>
+    <ul class="tarjetasProdMarca">
+        <?php foreach($products as $product): ?>
+        <li> 
+            <div class="card" style="width: 18rem;">
+                <img src="<?= $product->url_imagenP?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $product->nombre_producto?></h5>
+                    <p class="card-text">Marca: <?=$product->nombre_marca?> </p>
+                    <a href="<?=BASE_URL?>detalles/<?= $product->id ?>" class="btn btn-primary">Ver detalles</a>
+                    
+                </div>
+            </div> 
+        </li>
+        <?php endforeach ?>
+    </ul>
+</div>
+
+
+
 
 <h2>Lista de marcas</h2>
 
-<ul>
-<?php foreach($marcas as $marca): ?>
-    <li>
-        <a href="busquedaPorMarca/<?= $marca->id_marcas ?>"><?= $marca->nombre_marca?></a>
-    </li>
-<?php endforeach ?>
-</ul>
+<div>
+    <ul class="tarjetasProdMarca">
+    <?php foreach($marcas as $marca): ?>
+        <li>
+            <div class="card" style="width: 18rem;">
+                <img src="<?= $marca->url_imagen?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $marca->nombre_marca?></h5>
+                    <a href="busquedaPorMarca/<?= $marca->id_marcas ?>" class="btn btn-primary">Listar productos</a>
+                </div>
+            </div>
+        </li>
+    <?php endforeach ?>
+    </ul>
+</div>
+
+ 
 
 <?php require './templates/footer.phtml';?>
 
