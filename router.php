@@ -3,6 +3,7 @@
 require_once './app/controllers/product.controller.php';
 require_once './app/controllers/auth.controller.php';
 require_once './app/controllers/marcas.controller.php';
+require_once './app/controllers/about.controller.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -22,7 +23,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 //login -->                 authController--> showLogin();
 //auth -->                  authController--> auth();
 //logout -->                authController--> logout();
-
+//about -->                 aboutController--> showabout();
 
 $action = 'listarProd';
 
@@ -96,6 +97,10 @@ switch ($params[0]) {
     case 'logout':
         $controller = new AuthController();
         $controller->logout();
+        break;
+    case 'about':
+        $controller = new AboutController();
+        $controller->showAbout();
         break;
     default: 
         echo "404 Page Not Found";
