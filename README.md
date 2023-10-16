@@ -8,4 +8,4 @@
 
 *Descripcion:* Este sitio web esta diseñado para que el usuario pueda registrarse y realizar busquedas (segun distintas categorias) y compras online de todo tipo de calzado.
 
-![alt text](https://github.com/AndresMGuerrero/TPE-Web2/blob/main/Diagrama-ER.jpeg)
+![alt text](https://github.com/AndresMGuerrero/TPE-Web2/blob/main/Diagrama-ER-ShoeSpot.jpg)
