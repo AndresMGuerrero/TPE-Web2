@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2023 a las 01:24:30
+-- Tiempo de generación: 16-10-2023 a las 18:29:31
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_tienda_de_calzado`
+-- Base de datos: `db_shoespot`
 --
 
 -- --------------------------------------------------------

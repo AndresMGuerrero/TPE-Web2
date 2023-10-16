@@ -25,7 +25,7 @@
             <td> <?= $product->talle?> </td>
             <td> <?= $product->tipo?> </td>
             <td> <?= $product->precio?> </td>
-            <td> <?= $product->url_imagenP?> </td>
+            <td><textarea name="" id="" cols="70" rows="3" readonly><?= $product->url_imagenP?></textarea> </td>
             <td> <?= $product->id_marca_fk?> </td>
             <td><a href="<?=BASE_URL?>showFormModifProd/<?= $product->id ?>" type="button">Modificar</a></td>
             <td><a href="<?=BASE_URL?>eliminarProd/<?= $product->id ?>" type="button">Borrar</a></td>

@@ -1,8 +1,10 @@
 <?php require './templates/header.phtml';?>
 
+<h2>Tabla de marcas</h2>
+
 <table class="table table-bordered">
     <thead>
-        <tr>   
+        <tr class="table-info">   
             <th>id_marca</th>
             <th>nombre_marca</th>
             <th>Año de creación</th>
@@ -18,7 +20,7 @@
             <td> <?= $marca->nombre_marca ?> </td>
             <td> <?= $marca->fecha_creacion?> </td>
             <td> <?= $marca->loc_fabrica?> </td>
-            <td> <?= $marca->url_imagen?> </td>
+            <td><textarea name="" id="" cols="70" rows="3" readonly><?= $marca->url_imagen?></textarea></td>
             <td><a href="<?=BASE_URL?>showFormModifMarca/<?= $marca->id_marcas ?>" type="button">Modificar</a></td>
             <td><a href="<?=BASE_URL?>eliminarMarca/<?= $marca->id_marcas ?>" type="button">Borrar</a></td>
             
