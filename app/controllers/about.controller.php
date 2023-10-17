@@ -1,5 +1,5 @@
 <?php
-//require_once './app/view/about.view.php';
+
 require_once './app/views/about.view.php';
 
 class AboutController {
@@ -11,7 +11,7 @@ public function __construct(){
 }
 
 public function showAbout(){
-    $this->view->DescricionAbout();
+    $this->view->DescripcionAbout();
 }
 
 }

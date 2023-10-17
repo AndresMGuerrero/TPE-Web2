@@ -23,7 +23,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 //login -->                 authController--> showLogin();
 //auth -->                  authController--> auth();
 //logout -->                authController--> logout();
-//about -->                 aboutController--> showabout();
+//about -->                 aboutController--> showAbout();
 
 $action = 'listarProd';
 
@@ -103,6 +103,7 @@ switch ($params[0]) {
         $controller->showAbout();
         break;
     default: 
-        echo "404 Page Not Found";
+        $controller = new ErrorController();
+        $controller->showError();
         break;
 }
