@@ -9,17 +9,19 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 
 //TABLA DE RUTEO
 
-//listarProdPublico -->     productController--> showProducts();
-//detalle/:ID->             productController--> showDetalles(id);
+//listarProd -->            productController--> showProducts();
+//detalles/:ID->            productController--> showDetalles(id);
 //listarMarcas -->          marcaController--> showMarcas();
-//buscarPorMarca/:ID-->     productController--> searchProducts(id);
+//busquedaPorMarca/:ID-->   productController--> searchProducts(id);
 //listarProdAdmin -->       productController--> showProductsAdmin();
 //agregarProd -->           productController--> addProduct();
 //eliminarProd/:ID -->      productController--> removeProduct(id);
-//updateProduct/:ID -->     productController--> updateProduct(id);
-//agregarMarca -->          marcaController--> addMarca();
-//eliminarMarca/:ID -->     marcaController--> removeMarca(id);
-//modificarMarca -->        marcaController--> updateMarca(id);
+//showFormModifProd/:ID --> productController-->showFormUpdateProduct(id);
+//modificarProd/:ID -->     productController--> updateProduct(id);
+//agregarMarca -->          marcasController--> addMarca();
+//eliminarMarca/:ID -->     marcasController--> removeMarca(id);
+//showFormModifMarca/:ID --> marcasController-->showFormUpdateMarca(id);
+//modificarMarca -->        marcasController--> updateMarca(id);
 //login -->                 authController--> showLogin();
 //auth -->                  authController--> auth();
 //logout -->                authController--> logout();
