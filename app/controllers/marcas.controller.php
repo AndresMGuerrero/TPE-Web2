@@ -38,13 +38,23 @@ class MarcasController{
             return;
         }
 
+        //Verificamos que la marca no exista en la base de datos
+        $marcas = $this->modelMarca->getMarcas();
+        foreach($marcas as $marca){
+            if($nombre==$marca->nombre_marca){
+                $this->errorView->showError("La marca que quiere agregar ya existe en la base de datos.");
+                return;
+            }
+        }
+
         $id = $this->modelMarca->insertMarca($nombre, $anio, $localizacion, $urlImg);
 
         if($id){
             header('Location: ' . BASE_URL . 'listarMarcas');
         } else {
-            $this->errorView->showError("Error al insertar marca"); //está bien hacer un error.view.php? 
-        }        
+            $this->errorView->showError("Error al insertar marca");
+        }            
+                
 
     }
 
