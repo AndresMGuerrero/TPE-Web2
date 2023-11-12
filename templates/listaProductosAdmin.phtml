@@ -13,6 +13,7 @@
             <th>Precio</th>
             <th>Url Imagen</th>
             <th>ID_Marca</th>
+            <th>Nombre_Marca</th>
         </tr>
     </thead>
 
@@ -25,8 +26,9 @@
             <td> <?= $product->talle?> </td>
             <td> <?= $product->tipo?> </td>
             <td> <?= $product->precio?> </td>
-            <td><textarea name="" id="" cols="70" rows="3" readonly><?= $product->url_imagenP?></textarea> </td>
+            <td><textarea name="" id="" cols="50" rows="4" readonly><?= $product->url_imagenP?></textarea> </td>
             <td> <?= $product->id_marca_fk?> </td>
+            <td> <?= $product->nombre_marca?> </td>
             <td><a href="<?=BASE_URL?>showFormModifProd/<?= $product->id ?>" type="button">Modificar</a></td>
             <td><a href="<?=BASE_URL?>eliminarProd/<?= $product->id ?>" type="button">Borrar</a></td>
             

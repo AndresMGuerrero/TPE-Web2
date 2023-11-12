@@ -28,33 +28,33 @@ class MarcasController{
 
     public function addMarca(){
 
-        $nombre = $_POST['nombre'];
-        $anio = $_POST['anio'];
-        $localizacion = $_POST['localizacion'];
-        $urlImg = $_POST['imagen'];
+        if(!empty($_POST['nombre'])&&!empty($_POST['anio'])&&!empty($_POST['localizacion'])){
+            $nombre = $_POST['nombre'];
+            $anio = $_POST['anio'];
+            $localizacion = $_POST['localizacion'];
+            $urlImg = $_POST['imagen'];
 
-        if(empty($nombre)||empty($anio)||empty($localizacion)||empty($urlImg)){
+            //Verificamos que la marca no exista en la base de datos
+            $marcas = $this->modelMarca->getMarcas();
+            foreach($marcas as $marca){
+                if($nombre==$marca->nombre_marca){
+                    $this->errorView->showError("La marca que quiere agregar ya existe en la base de datos.");
+                    return;
+                }
+            }
+
+            $id = $this->modelMarca->insertMarca($nombre, $anio, $localizacion, $urlImg);
+
+            if($id){
+                header('Location: ' . BASE_URL . 'listarMarcas');
+            } else {
+                $this->errorView->showError("Error al insertar marca");
+            } 
+
+        } else {
             $this->errorView->showError("Complete todos los campos.");
             return;
-        }
-
-        //Verificamos que la marca no exista en la base de datos
-        $marcas = $this->modelMarca->getMarcas();
-        foreach($marcas as $marca){
-            if($nombre==$marca->nombre_marca){
-                $this->errorView->showError("La marca que quiere agregar ya existe en la base de datos.");
-                return;
-            }
-        }
-
-        $id = $this->modelMarca->insertMarca($nombre, $anio, $localizacion, $urlImg);
-
-        if($id){
-            header('Location: ' . BASE_URL . 'listarMarcas');
-        } else {
-            $this->errorView->showError("Error al insertar marca");
-        }            
-                
+        }     
 
     }
 
@@ -90,14 +90,15 @@ class MarcasController{
     public function updateMarca($id){
 
         
-        if(!empty($_POST['anio'])&&!empty($_POST['localizacion'])&&!empty($_POST['imagen'])){
+        if(!empty($_POST['nombre'])&&!empty($_POST['anio'])&&!empty($_POST['localizacion'])&&!empty($_POST['imagen'])){
 
+            $nombre = $_POST['nombre'];
             $anio = $_POST['anio'];
             $localizacion = $_POST['localizacion'];
             $urlImg = $_POST['imagen'];
             
     
-            $this->modelMarca->updateMarca($id, $anio, $localizacion, $urlImg);
+            $this->modelMarca->updateMarca($id, $nombre, $anio, $localizacion, $urlImg);
             header('Location: ' . BASE_URL . 'listarMarcas');
         }            
     }

@@ -11,7 +11,7 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 
 //listarProd -->            productController--> showProducts();
 //detalles/:ID->            productController--> showDetalles(id);
-//listarMarcas -->          marcaController--> showMarcas();
+//listarMarcas -->          marcasController--> showMarcas();
 //busquedaPorMarca/:ID-->   productController--> searchProducts(id);
 //listarProdAdmin -->       productController--> showProductsAdmin();
 //agregarProd -->           productController--> addProduct();

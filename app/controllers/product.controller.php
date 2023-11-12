@@ -48,34 +48,34 @@ class ProductController{
 
     public function showProductsAdmin(){
         AuthHelper::init();
-        $products = $this->modelProd->getProducts();
+        $products = $this->modelProd->getProductsCompleto();
         $marcas = $this->modelMarca->getMarcas();
         $this->viewProd->listProductsAdmin($products, $marcas);
     }
     
 
     public function addProduct(){
+        if(!empty($_POST['nombre'])&&!empty($_POST['color'])&&!empty($_POST['talle'])&&!empty($_POST['tipo'])&&!empty($_POST['precio'])&&!empty($_POST['marca'])){
 
-        $nombre = $_POST['nombre'];
-        $color = $_POST['color'];
-        $talle = $_POST['talle'];
-        $tipo = $_POST['tipo'];
-        $precio = $_POST['precio'];
-        $urlImgProd = $_POST['imagen'];
-        $marca = $_POST['marca'];
+            $nombre = $_POST['nombre'];
+            $color = $_POST['color'];
+            $talle = $_POST['talle'];
+            $tipo = $_POST['tipo'];
+            $precio = $_POST['precio'];
+            $urlImgProd = $_POST['imagen'];
+            $marca = $_POST['marca'];
 
-        if(empty($nombre)||empty($color)||empty($talle)||empty($tipo)||empty($precio)||empty($marca)||empty($urlImgProd)){
+            $id = $this->modelProd->insertProduct($nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca);
+
+            if($id){
+                header('Location: ' . BASE_URL . 'listarProdAdmin');
+            } else {
+                $this->errorView->showError("Error al insertar producto");
+            } 
+        } else {
             $this->errorView->showError("Complete todos los campos.");
             return;
-        }
-
-        $id = $this->modelProd->insertProduct($nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca);
-
-        if($id){
-            header('Location: ' . BASE_URL . 'listarProdAdmin');
-        } else {
-            $this->errorView->showError("Error al insertar producto");
-        }        
+        } 
 
     }
 
@@ -116,7 +116,7 @@ class ProductController{
             }
             $this->modelProd->updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca);
             if($indicador==0){
-                $this->errorView->showError("Dirigirse a el listado de marcas y completar los datos de la nueva marca incluida.");
+                $this->errorView->showError("Dirigirse al listado de marcas y completar los datos de la nueva marca incluida.");
             } else{
                 header('Location: ' . BASE_URL . 'listarProdAdmin');
             }

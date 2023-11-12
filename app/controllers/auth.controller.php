@@ -18,27 +18,26 @@ class AuthController{
         $this->view->showFormLogin();
     }
 
-    public function auth(){
-
+    public function auth(){        
+                  
         $userName = $_POST['userName'];
         $password = $_POST['password'];
 
-        
         if(empty($userName)||empty($password)){
-            $this->view->showFormLogin('Completar los datos faltantes.');
-            
+            $this->view->showFormLogin('Completar los datos faltantes.');                
             return;
         }
 
         $user = $this->model->getUserByName($userName);
-        
+                
         if($user && password_verify($password, $user->password)){
             
             AuthHelper::login($user);
             header('Location: ' . BASE_URL . 'listarProdAdmin');
         } else {
             $this->view->showFormLogin('Usuario inválido');
-        }
+        }           
+          
     }
 
     public function logout(){

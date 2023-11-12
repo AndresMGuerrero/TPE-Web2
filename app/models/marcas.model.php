@@ -42,8 +42,8 @@ class MarcasModel{
         return $marca;
     }
 
-    public function updateMarca($id, $anio, $localizacion, $urlImg){
-        $query = $this->db->prepare('UPDATE marcas SET fecha_creacion = ? , loc_fabrica = ?, url_imagen = ? WHERE id_marcas = ?');
-        $query->execute([$anio, $localizacion, $urlImg, $id]);
+    public function updateMarca($id, $nombre, $anio, $localizacion, $urlImg){
+        $query = $this->db->prepare('UPDATE marcas SET nombre_marca = ?, fecha_creacion = ? , loc_fabrica = ?, url_imagen = ? WHERE id_marcas = ?');
+        $query->execute([$nombre, $anio, $localizacion, $urlImg, $id]);
     }
 }

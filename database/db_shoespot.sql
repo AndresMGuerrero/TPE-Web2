@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2023 a las 18:29:31
+-- Tiempo de generación: 12-11-2023 a las 14:58:33
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -51,7 +51,7 @@ CREATE TABLE `marcas` (
   `nombre_marca` varchar(45) NOT NULL,
   `fecha_creacion` varchar(45) DEFAULT NULL,
   `loc_fabrica` varchar(45) DEFAULT NULL,
-  `url_imagen` varchar(500) NOT NULL
+  `url_imagen` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -59,14 +59,14 @@ CREATE TABLE `marcas` (
 --
 
 INSERT INTO `marcas` (`id_marcas`, `nombre_marca`, `fecha_creacion`, `loc_fabrica`, `url_imagen`) VALUES
-(20, 'topper', '1989', 'Argentina', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Topper_Logo.svg/1200px-Topper_Logo.svg.png'),
 (22, 'nike', '1987', 'España', 'https://content.asos-media.com/-/media/homepages/unisex/brands-logos/256x256/nike-hp-logos-256x256.jpg'),
 (23, 'adidas', '1970', 'Alemania', 'https://cdn-icons-png.flaticon.com/256/731/731962.png'),
 (24, 'vans', '1982', 'España', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-wo_4iwxWnSjcs-MljjbrtJ3NOIT27OyFa0Nsmq7WGfVQAQY5QO8o-5I-04fPrt8wo6o&usqp=CAU'),
 (25, 'rebook', '1982', 'Argentina', 'https://logospng.org/download/reebok/logo-reebok-256.png'),
 (26, 'puma', '1987', 'Argentina', 'https://logospng.org/download/puma/logo-puma-icon-256.png'),
 (27, 'jimmy choo', '1986', 'Japón', 'https://d2q79iu7y748jz.cloudfront.net/s/_squarelogo/256x256/495de0f1168c9cbaa7553f6fa1eb222a'),
-(28, 'new balance', '1997', 'Francia', 'https://planetabasketstore.com/images/companies/1/teste/Brands%20logo/text%20logo/New_Balance_Black_Logo_256.png?1596622716491');
+(28, 'new balance', '1997', 'Francia', 'https://planetabasketstore.com/images/companies/1/teste/Brands%20logo/text%20logo/New_Balance_Black_Logo_256.png?1596622716491'),
+(36, 'topper', '1987', 'Argentina', 'http://nuevamutualcamioneros.com/wp-content/uploads/2019/08/topper.png');
 
 -- --------------------------------------------------------
 
@@ -81,7 +81,7 @@ CREATE TABLE `productos` (
   `talle` int(11) NOT NULL,
   `tipo` varchar(45) NOT NULL,
   `precio` double NOT NULL,
-  `url_imagenP` varchar(500) NOT NULL,
+  `url_imagenP` varchar(500) DEFAULT NULL,
   `id_marca_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -90,10 +90,13 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `nombre_producto`, `color`, `talle`, `tipo`, `precio`, `url_imagenP`, `id_marca_fk`) VALUES
-(21, 'Zapatillas', 'negro', 39, 'urbana', 43000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzzKtEWGIrbvP6Yf0woBkxacdQbjyXH3ZYOg&usqp=CAU', 26),
-(22, 'Zapatillas', 'negro', 45, 'deportivas', 32000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4fawK8wsXtQDoifzDrX2rbxK_F9sB_H4GDA&usqp=CAU', 26),
+(21, 'Zapatillas', 'rojo', 39, 'urbana', 43000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzzKtEWGIrbvP6Yf0woBkxacdQbjyXH3ZYOg&usqp=CAU', 26),
+(22, 'Zapatillas', 'rojo', 45, 'Deportivas', 32000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4fawK8wsXtQDoifzDrX2rbxK_F9sB_H4GDA&usqp=CAU', 26),
 (23, 'zapatos', 'blanco', 38, 'formal', 56000, 'https://img.eobuwie.cloud/eob_product_256w_256h(8/7/a/7/87a752ab0d5e2bb39c8c2ffeed801d4843812fc0_01_5904862690506_RW.jpg,jpg)/tacon-de-aguja-deezee-kl-q2277-6-golden.jpg', 27),
-(24, 'zapatillas', 'azul', 39, 'casual', 32000, 'https://img.eobuwie.cloud/eob_product_256w_256h(4/6/3/b/463bd009d459858174c18df03462ac607c978e3e_01_0000301216117_rz.jpg,jpg)/sneakers-new-balance-wl420sc2-violeta.jpg', 28);
+(30, 'Zapatillas', 'negro', 45, 'Deportivas', 32000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4fawK8wsXtQDoifzDrX2rbxK_F9sB_H4GDA&usqp=CAU', 26),
+(32, 'zapatillas', 'rojo', 39, 'urbana', 56000, 'https://img.eobuwie.cloud/eob_product_256w_256h(f/5/c/5/f5c59348b165ea6932db193e15067dcee20e7e4d_02_0000303223526_RW.jpg,webp)/zapatos-nike-lebron-witness-7-dm1123-005-black-university-red-white-0000303223526.webp', 22),
+(33, 'zapatillas', 'negro', 38, 'deportivas', 29000, 'https://skipping.es/web/image/product.template/26085/image_256/%5BDC3728-004%5D%20Zapatilla%20Nike%20Revolution%206%20Negra?unique=c449c58', 22),
+(34, 'zapatos', 'negro', 42, 'formal', 34000, 'https://sastreriamilitar.mil.ar/img/p/4/0/9/409-thickbox_default.jpg', 25);
 
 --
 -- Índices para tablas volcadas
@@ -132,13 +135,13 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id_marcas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_marcas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Restricciones para tablas volcadas
