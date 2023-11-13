@@ -22,8 +22,16 @@
         <label for="imagen" class="form-label">URL Imagen: </label><input type="text" name="imagen" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->url_imagenP?>" maxlength="300">
     </div>
     <div class="mb-3">
-        <label for="marca">Marca: </label><input type="text" name="marca" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?= $product->nombre_marca?>">
+        <label for="marca" class="form-label">Marca: </label>
+        <select name="marca" id="marca" class="form-select" aria-label="Default select example">
+            <option value="">Selecciona la marca...</option>
+            <?php foreach($marcas as $marca):?>
+                <option value="<?=$marca->id_marcas?>"<?php if($product->id_marca_fk==$marca->id_marcas):?><?= "selected"?><?php endif?>><?=$marca->nombre_marca?></option>
+            <?php endforeach ?>
+        </select>
     </div>
+
+    
     
 
     <button type="submit" class="btn btn-primary" >Modificar producto</button>

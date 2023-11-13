@@ -11,7 +11,7 @@ class ProductModel{
     }
 
     public function getProductsandMarcas($id){
-        $query = $this->db->prepare('SELECT productos.id, productos.nombre_producto, productos.color, productos.talle, productos.tipo, productos.precio, productos.url_imagenP, productos.id_marca_fk, marcas.id_marcas, marcas.nombre_marca FROM productos INNER JOIN marcas ON marcas.id_marcas = productos.id_marca_fk; WHERE id=?');
+        $query = $this->db->prepare('SELECT productos.id, productos.nombre_producto, productos.color, productos.talle, productos.tipo, productos.precio, productos.url_imagenP, productos.id_marca_fk, marcas.id_marcas, marcas.nombre_marca FROM productos INNER JOIN marcas ON marcas.id_marcas = productos.id_marca_fk WHERE id=?');
         $query->execute([$id]);
         $product = $query->fetch(PDO::FETCH_OBJ);
         return $product;
@@ -66,15 +66,9 @@ class ProductModel{
     }
 
     public function updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca){
-        //para agarrar el id que le corresponde a la marca en la tabla marcas
-        $query = $this->db->prepare('SELECT id_marcas FROM marcas WHERE nombre_marca = ?');
-        $query->execute([$marca]);
-
-        $id_marca = $query->fetch(PDO::FETCH_OBJ);
-            
-        //luego cambiamos el apartado id_marca_fk con el id de la tabla marcas que le corresponde a la marca puesta desde el form
+        
         $query = $this->db->prepare('UPDATE productos SET nombre_producto = ? , color = ? , talle = ? , tipo = ? , precio = ? , url_imagenP = ?, id_marca_fk = ? WHERE id = ?');
-        $query->execute([$nombre, $color, $talle, $tipo, $precio, $urlImgProd, $id_marca->id_marcas, $id]);
+        $query->execute([$nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca, $id]);
         
     }
 

@@ -18,7 +18,7 @@ class ProductView{
         require './templates/listaProductosAdmin.phtml';
     }
 
-    public function showProductsandMarcas($product){        
+    public function showProductsandMarcas($product, $marcas){        
         require './templates/formUpdateProd.phtml';
     }    
 }

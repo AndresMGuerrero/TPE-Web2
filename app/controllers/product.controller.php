@@ -86,8 +86,9 @@ class ProductController{
 
     public function showFormUpdateProduct($id){  
         AuthHelper::init();      
-        $product = $this->modelProd->getProductsandMarcas($id);        
-        $this->viewProd->showProductsandMarcas($product);
+        $product = $this->modelProd->getProductsandMarcas($id);
+        $marcas = $this->modelMarca->getMarcas();        
+        $this->viewProd->showProductsandMarcas($product, $marcas);
         require_once './templates/formUpdateProd.phtml';
         
     }
@@ -104,23 +105,13 @@ class ProductController{
             $urlImgProd = $_POST['imagen'];
             $marca = $_POST['marca'];
             
-            $marcas = $this->modelMarca->getMarcas();
-            $indicador = 0;
-            foreach($marcas as $marcaExistente){
-                if($marcaExistente->nombre_marca == $marca){
-                    $indicador = 1;
-                }
-            }
-            if($indicador==0){
-                $this->modelMarca->insertMarca($marca, "null", "null", "null");
-            }
-            $this->modelProd->updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca);
-            if($indicador==0){
-                $this->errorView->showError("Dirigirse al listado de marcas y completar los datos de la nueva marca incluida.");
-            } else{
-                header('Location: ' . BASE_URL . 'listarProdAdmin');
-            }
             
+            $this->modelProd->updateProduct($id, $nombre, $color, $talle, $tipo, $precio, $urlImgProd, $marca);
+            header('Location: ' . BASE_URL . 'listarProdAdmin');
+            
+        } else {
+            $this->errorView->showError("Complete todos los campos.");
+            return;
         }            
     }
 }
