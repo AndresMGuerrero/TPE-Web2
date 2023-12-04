@@ -27,7 +27,7 @@ class ProductController{
     public function showProducts(){
         AuthHelper::init();       
         $products = $this->modelProd->getProductsCompleto(); //porque necesitamos la marca de cada productos para mostrarlo en las tarjetas
-        $marcas = $this->modelMarca->getMarcas(); //Ver para qué puse esto
+        $marcas = $this->modelMarca->getMarcas(); //Para listar marcas
         $this->viewProd->listProductsMarcasPublic($products, $marcas);
     }
 

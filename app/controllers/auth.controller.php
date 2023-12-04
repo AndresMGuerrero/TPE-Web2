@@ -20,13 +20,14 @@ class AuthController{
 
     public function auth(){        
                   
-        $userName = $_POST['userName'];
-        $password = $_POST['password'];
-
-        if(empty($userName)||empty($password)){
+        if(empty($_POST['userName'])||empty($_POST['password'])){
             $this->view->showFormLogin('Completar los datos faltantes.');                
             return;
         }
+        
+        $userName = $_POST['userName'];
+        $password = $_POST['password'];
+        
 
         $user = $this->model->getUserByName($userName);
                 
