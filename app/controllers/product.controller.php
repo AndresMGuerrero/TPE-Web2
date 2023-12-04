@@ -95,7 +95,7 @@ class ProductController{
     
     public function updateProduct($id){
         
-        if(!empty($_POST['nombre'])&&!empty($_POST['color'])&&!empty($_POST['talle'])&&!empty($_POST['tipo'])&&!empty($_POST['precio'])&&!empty($_POST['imagen'])&&!empty($_POST['marca'])){
+        if(!empty($_POST['nombre'])&&!empty($_POST['color'])&&!empty($_POST['talle'])&&!empty($_POST['tipo'])&&!empty($_POST['precio'])&&!empty($_POST['marca'])){
 
             $nombre = $_POST['nombre'];
             $color = $_POST['color'];
