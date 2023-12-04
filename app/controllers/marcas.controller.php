@@ -69,7 +69,7 @@ class MarcasController{
         }
 
         if($indicador==1){
-            $this->errorView->showError("No puede eliminar una marca que exista en la tabla productos.");
+            $this->errorView->showError("No puede eliminar una marca que está siendo utilizada en la tabla productos.");
         } else {
             $this->modelMarca-> deleteMarca($id);
             header('Location: ' . BASE_URL . 'listarMarcas');
